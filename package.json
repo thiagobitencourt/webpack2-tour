@@ -1,0 +1,24 @@
+{
+  "name": "webpack2-tour",
+  "version": "1.0.0",
+  "description": "Webpack+2.0 bundle example with some helpful stuffs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thiagobitencourt/webpack2-tour.git"
+  },
+  "keywords": [
+    "webpack",
+    "javascript",
+    "nodejs"
+  ],
+  "author": "Thiago Bitencourt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thiagobitencourt/webpack2-tour/issues"
+  },
+  "homepage": "https://github.com/thiagobitencourt/webpack2-tour#readme"
+}
