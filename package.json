@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/thiagobitencourt/webpack2-tour/issues"
   },
-  "homepage": "https://github.com/thiagobitencourt/webpack2-tour#readme"
+  "homepage": "https://github.com/thiagobitencourt/webpack2-tour#readme",
+  "devDependencies": {
+    "webpack": "^2.4.1",
+    "webpack-dev-server": "^2.4.5"
+  }
 }
