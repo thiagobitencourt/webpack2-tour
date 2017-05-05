@@ -1,3 +1,6 @@
 'use strict';
 
-document.write("Hello, webpack!. Listening for changes...");
+import Car from './car';
+
+const bmw = new Car();
+bmw.manufacture('bmw');
