@@ -1,10 +1,12 @@
 'use strict';
 
 const webpack = require('webpack');
+const path = require('path');
 
 let config = {
-  entry: './index.js',
+  entry: './src/index.js',
   output: {
+    path: path.resolve(__dirname, './public'),
     filename: 'output.js'
   },
   module: {
