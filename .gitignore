@@ -1,5 +1,5 @@
 node_modules/
 dist/
-public\
-public\!index.html
+public/
+public/!index.html
 debug.log
