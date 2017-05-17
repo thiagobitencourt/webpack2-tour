@@ -1,8 +1,10 @@
 'use strict';
 
-const webpack = require('webpack');
-const path = require('path');
-const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack'); // webpack itself
+const path = require('path'); // nodejs dependency when dealing with paths
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin'); // extract css into a dedicated file
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // "uglify" our output js code
+const OptimizeCSSAssets = require('optimize-css-assets-webpack-plugin'); // require webpack plugin
 
 let config = {
   entry: './src/index.js',
@@ -38,7 +40,14 @@ let config = {
     inline: true, // inline mode (set to false to disable including client scripts (like livereload))
     open: true // open default browser while lauching
   },
-  devtool: 'eval-source-map' // enable devtool for better debuggin experience
+  devtool: 'source-map' // enable devtool for better debuggin experience
 }
 
 module.exports = config;
+
+if(process.env.NODE_ENV === 'production') {
+  module.exports.plugins.push(
+    new webpack.optimize.UglifyJsPlugin(), // call the uglify plugin
+    new OptimizeCSSAssets() // call the css optimizer (minification)
+  )
+}
