@@ -12,6 +12,12 @@ let config = {
     path: path.resolve(__dirname, './public'),
     filename: 'output.js'
   },
+  resolve: { // This options change how modules are resolved
+    extensions: ['.js', '.jsx', '.json', '.scss', '.css', '.jpeg', '.jpg', '.gif', '.png'], // Automatically resolve certain extensions
+    alias: { // Create aliases
+      images: path.resolve(__dirname, 'src/assets/images') // src/assets/images alias
+    }
+  },
   module: {
     rules: [
       {
@@ -24,10 +30,10 @@ let config = {
       },
       {
         test: /\.scss$/, //files wnding with .scss
-        use: ExtractTextWebpackPlugin.extract({ // call our plugin with extract method
+        use: ['css-hot-loader'].concat(ExtractTextWebpackPlugin.extract({ // call our plugin with extract method
           use: ['css-loader', 'sass-loader'], // use these loaders
           fallback: 'style-loader' // fallback for any CSS not extracted
-        }) // end extract
+        })) // end extract
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/,
