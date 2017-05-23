@@ -5,12 +5,15 @@ const path = require('path'); // nodejs dependency when dealing with paths
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin'); // extract css into a dedicated file
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // "uglify" our output js code
 const OptimizeCSSAssets = require('optimize-css-assets-webpack-plugin'); // require webpack plugin
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const packageJson = require('./package');
 
 let config = {
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, './public'),
-    filename: 'output.js'
+    path: path.resolve(__dirname, './dist'),
+    filename: 'app.js'
   },
   resolve: { // This options change how modules are resolved
     extensions: ['.js', '.jsx', '.json', '.scss', '.css', '.jpeg', '.jpg', '.gif', '.png'], // Automatically resolve certain extensions
@@ -61,10 +64,16 @@ let config = {
     ] // end rules
   },
   plugins: [
-    new ExtractTextWebpackPlugin('styles.css') // call the ExtractTextWebpackPlugin and name ou css file
+    new ExtractTextWebpackPlugin('styles.css'), // call the ExtractTextWebpackPlugin and name ou css file
+    new HtmlWebpackPlugin({
+      title: 'Webpakc +2.0 tour',
+      version: packageJson.version,
+      name: packageJson.name,
+      template: './src/index.html'
+    })
   ],
   devServer: {
-    contentBase: path.resolve(__dirname, './public'), // A directory or URL to server HTML content from.
+    contentBase: path.resolve(__dirname, './dist'), // A directory or URL to server HTML content from.
     historyApiFallback: true, // fallback to /index.html for Single Page Applications.
     inline: true, // inline mode (set to false to disable including client scripts (like livereload))
     open: true // open default browser while lauching
