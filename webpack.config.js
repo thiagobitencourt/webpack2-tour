@@ -5,9 +5,11 @@ const path = require('path'); // nodejs dependency when dealing with paths
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin'); // extract css into a dedicated file
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // "uglify" our output js code
 const OptimizeCSSAssets = require('optimize-css-assets-webpack-plugin'); // require webpack plugin
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin'); // Generate the index.html based on a template
+const GenerateJsonPlugin = require('generate-json-webpack-plugin'); // Generate a json file
 
 const packageJson = require('./package');
+const configJson = require('./src/config');
 
 let config = {
   entry: './src/index.js',
@@ -65,6 +67,7 @@ let config = {
   },
   plugins: [
     new ExtractTextWebpackPlugin('styles.css'), // call the ExtractTextWebpackPlugin and name ou css file
+    new GenerateJsonPlugin('config.json', configJson, null, 2), // Generates a config.json file (null and 2 are JSON.stringify parameters)
     new HtmlWebpackPlugin({
       title: 'Webpakc +2.0 tour',
       version: packageJson.version,
